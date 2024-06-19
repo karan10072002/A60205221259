@@ -3,7 +3,7 @@ import requests
 
 app = Flask(__name__)
 
-# Define valid companies and categories (replace with actual values)
+# Define valid companies and categories
 VALID_COMPANIES = ["AMZ", "EBY", "WMT"]  
 VALID_CATEGORIES = ["Laptop", "Mobile", "TV"]
 
@@ -17,7 +17,7 @@ headers = {
 }
 
 def get_products_from_ecommerce(company, category, n, sort_by, sort_order, min_price=None, max_price=None, page=1):
-    # Simulate API calls to e-commerce companies (replace with actual logic)
+    # Simulate API calls to e-commerce companies
     url = f"{BASE_URL}{company}/{category}/products?top={n}&page={page}"
     if sort_by:
         url += f"&sort={sort_by}"
@@ -27,7 +27,7 @@ def get_products_from_ecommerce(company, category, n, sort_by, sort_order, min_p
         url += f"&price_range={min_price},{max_price}"
     response = requests.get(url, headers = headers)
 
-    # Parse response and extract relevant product data (replace with actual parsing logic)
+    # Parse response and extract relevant product data
     if response.status_code == 200:
         products = response.json()
         return products
@@ -51,7 +51,7 @@ def get_top_products(company, category):
     if not products:
         return jsonify({"error": "Error retrieving products"}), 500
 
-    # Process and format product data (replace with actual logic)
+    # Process and format product data
     formatted_products = []
     for product in products:
         formatted_products.append({
@@ -65,13 +65,13 @@ def get_top_products(company, category):
 
 @app.route('/products/<product_id>', methods=['GET'])
 def get_product_details(product_id):
-    # Simulate API calls to e-commerce companies (replace with actual logic for fetching by ID)
+    # Simulate API calls to e-commerce companies
     url = f"{BASE_URL}product/{product_id}"
     response = requests.get(url, headers = headers)
 
     if response.status_code == 200:
         product = response.json()
-        # Process and format product data (replace with actual logic)
+        # Process and format product data 
         formatted_product = {
             "productName": product["name"],
             "price": product["price"],
